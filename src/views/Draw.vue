@@ -90,7 +90,8 @@ export default defineComponent({
           await preloadBg.imgs()
         }
         try {
-          const { list } = await api.material.getFonts({ ids: fontData.map((x: any) => x.id) })
+          const { records } = await api.material.getFonts({ ids: fontData.map((x: any) => x.id) })
+          let list = records;
           fontData.forEach((item: any) => {
             item.url = list.find((x: any) => x.oid == item.id)?.ttf
           })

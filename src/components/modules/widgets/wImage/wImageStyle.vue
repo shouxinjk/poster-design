@@ -16,6 +16,15 @@
           <number-input v-model="innerElement.height" style="margin-top: 0.5rem" label="高" @finish="(value) => finish('height', value)" />
         </div>
       </el-collapse-item>
+
+      <!--ilife-->
+      <el-collapse-item title="参数设置" name="1">
+        <div class="line-layout">
+          <text-input v-model="innerElement.paramName" label="名称" @finish="(value) => finish('paramName', value)" />
+          <text-input-area style="margin-top: 10px;" v-model="innerElement.paramDesc" label="备注" @finish="(value) => finish('paramDesc', value)" />
+        </div>
+      </el-collapse-item>
+
       <el-collapse-item title="设置" name="2">
         <!-- <el-button size="mini" style="width: 100%; margin-top: 0.5rem" plain @click="openCropper">替换图片</el-button> -->
         <el-button style="width: 100%; margin-bottom: 12px" plain @click="openPicBox">替换图片</el-button>
@@ -63,7 +72,8 @@ import { mapGetters, mapActions } from 'vuex'
 import numberInput from '../../settings/numberInput.vue'
 import iconItemSelect from '../../settings/iconItemSelect.vue'
 import numberSlider from '../../settings/numberSlider.vue'
-// import textInput from '../../settings/textInput.vue'
+import textInput from '../../settings/textInput.vue'
+import textInputArea from '../../settings/textInputArea.vue'
 // import CropImage from '@/components/business/cropper/CropImage.vue'
 // import ContainerWrap from '../../settings/EffectSelect/ContainerWrap.vue'
 // import uploader from '@/components/common/Uploader/index.vue'
@@ -76,7 +86,7 @@ import imageCutout from '@/components/business/image-cutout'
 
 export default {
   name: NAME,
-  components: { numberInput, numberSlider, iconItemSelect, picBox, imageCutout },
+  components: { numberInput, numberSlider, textInput, textInputArea, iconItemSelect, picBox, imageCutout },
   data() {
     return {
       picBoxShow: false,

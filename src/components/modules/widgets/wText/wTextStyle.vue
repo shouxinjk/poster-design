@@ -9,6 +9,15 @@
           <number-input v-model="innerElement.height" style="margin-top: 0.5rem" label="高" :editable="true" @finish="(value) => finish('height', value)" />
         </div>
       </el-collapse-item>
+
+      <!--ilife-->
+      <el-collapse-item title="参数设置" name="1">
+        <div class="line-layout">
+          <text-input v-model="innerElement.paramName" label="名称" @finish="(value) => finish('paramName', value)" />
+          <text-input-area style="margin-top: 10px;" v-model="innerElement.paramDesc" label="备注" @finish="(value) => finish('paramDesc', value)" />
+        </div>
+      </el-collapse-item>      
+
       <!-- <el-collapse-item title="样式设置" name="2"> -->
       <div class="line-layout style-item">
         <value-select v-model="innerElement.fontClass" label="文字" :data="fontClassList" inputWidth="152px" :readonly="true" @finish="(font) => finish('fontClass', font)" />
@@ -40,10 +49,11 @@
       <icon-item-select class="style-item" :data="alignIconList" @finish="alignAction" />
 
       <!-- v-show="!innerElement.editable"  -->
-      <div style="margin-top: 10px" class="line-layout style-item">
+      <div style="margin-top: 10px;" class="line-layout style-item">
         <text-input-area v-model="innerElement.text" @finish="(value) => finish('text', value)" />
       </div>
       <!-- </el-collapse-item> -->
+
     </el-collapse>
   </div>
 </template>
@@ -61,13 +71,14 @@ import numberSlider from '../../settings/numberSlider.vue'
 import colorSelect from '../../settings/colorSelect.vue'
 import iconItemSelect from '../../settings/iconItemSelect.vue'
 import textInputArea from '../../settings/textInputArea.vue'
+import textInput from '../../settings/textInput.vue'
 import valueSelect from '../../settings/valueSelect.vue'
 import effectWrap from '../../settings/EffectSelect/TextWrap.vue'
 import { useFontStore } from '@/common/methods/fonts'
 
 export default {
   name: NAME,
-  components: { numberInput, colorSelect, iconItemSelect, textInputArea, valueSelect, effectWrap, numberSlider },
+  components: { numberInput, textInput,  colorSelect, iconItemSelect, textInputArea, valueSelect, effectWrap, numberSlider },
   data() {
     return {
       activeNames: [],

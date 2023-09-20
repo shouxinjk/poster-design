@@ -8,17 +8,17 @@
 import fetch from '@/utils/axios'
 
 // 获取素材分类：
-export const getKinds = (params: Type.Object = {}) => fetch('design/cate', params)
+export const getKinds = (params: Type.Object = {}) => fetch('erp/designCategory/rootList', params)
 
 // 获取素材列表：
-export const getList = (params: Type.Object = {}) => fetch('design/material', params)
+export const getList = (params: Type.Object = {}) => fetch('erp/designMaterial/list', params)
 
 // 获取字体
-export const getFonts = (params: Type.Object = {}) => fetch('design/fonts', params)
+export const getFonts = (params: Type.Object = {}) => fetch('erp/designFonts/list', params)
 export const getFontSub = (params: Type.Object = {}) => fetch('design/font_sub', params)
 
 // 图库列表
-export const getImagesList = (params: Type.Object = {}) => fetch('design/imgs', params, 'get')
+export const getImagesList = (params: Type.Object = {}) => fetch('erp/designImage/list', params, 'get')
 
 // 我的上传列表
 export const getMyPhoto = (params: Type.Object = {}) => fetch('design/user/image', params)

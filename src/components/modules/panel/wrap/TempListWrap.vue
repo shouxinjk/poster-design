@@ -44,9 +44,9 @@ export default defineComponent({
       title: '推荐模板',
       searchKeyword: '',
     })
-    const pageOptions: any = { page: 0, pageSize: 20, cate: 1 }
-    const { cate, edit } = route.query
-    cate && (pageOptions.cate = cate)
+    const pageOptions: any = { pageNo: 0, pageSize: 20, category: '1' }
+    const { category, edit } = route.query
+    category && (pageOptions.category = category)
     edit && store.commit('managerEdit', true)
 
     // onMounted(async () => {})
@@ -57,7 +57,7 @@ export default defineComponent({
       if (init) {
         listRef.value.scrollTop = 0
         state.list = []
-        pageOptions.page = 0
+        pageOptions.pageNo = 0
         state.loadDone = false
       }
       if (state.loadDone || state.loading) {
@@ -65,11 +65,14 @@ export default defineComponent({
       }
 
       state.loading = true
-      pageOptions.page += 1
+      pageOptions.pageNo += 1
 
       const res = await api.home.getTempList({ search: state.searchKeyword, ...pageOptions })
-      res.list.length <= 0 && (state.loadDone = true)
-      state.list = state.list.concat(res.list)
+      // res.list.length <= 0 && (state.loadDone = true)
+      // state.list = state.list.concat(res.list)
+      console.log("got template list", res);
+      res.records.length <= 0 && (state.loadDone = true)
+      state.list = state.list.concat(res.records)
 
       setTimeout(() => {
         state.loading = false
@@ -79,8 +82,8 @@ export default defineComponent({
 
     function cateChange(type: any) {
       state.title = type.name
-      const init = pageOptions.cate != type.id
-      pageOptions.cate = type.id
+      const init = pageOptions.category != type.id
+      pageOptions.category = type.id
       load(init, pageOptions.stat)
     }
 
@@ -118,6 +121,7 @@ export default defineComponent({
       let result = null
       if (!item.data) {
         const res = await api.home.getTempDetail({ id: item.id })
+        console.log("got template detail", res);
         result = JSON.parse(res.data)
       } else {
         result = JSON.parse(item.data)

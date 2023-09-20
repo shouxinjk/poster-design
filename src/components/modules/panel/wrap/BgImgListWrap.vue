@@ -60,7 +60,9 @@ export default defineComponent({
         pageOptions.page = 1
       }
 
-      await api.material.getImagesList({ cate: 16, page: pageOptions.page }).then(({ list }: any) => {
+      await api.material.getImagesList({ category: 16, pageNo: pageOptions.page }).then(({ res }: any) => {
+        console.log("got image list", res);
+        let list = res.records;
         if (list.length > 0) {
           state.bgList.push(...list)
         } else {

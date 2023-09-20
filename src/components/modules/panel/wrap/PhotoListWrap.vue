@@ -49,7 +49,11 @@ export default {
       }
       this.loading = true
       this.page += 1
-      let { list = [], total } = await api.material.getImagesList({ page: this.page, pageSize: 30 })
+      // let { list = [], total } = await api.material.getImagesList({ page: this.page, pageSize: 30 })
+      let res = await api.material.getImagesList({ pageNo: this.page, pageSize: 30 })
+      console.log("got paged image list.", this.page, res);
+      let list = res.records || [];
+      let total = list.length;
       list.length <= 0 ? (this.loadDone = true) : (this.recommendImgList = this.recommendImgList.concat(list))
       setTimeout(() => {
         this.loading = false

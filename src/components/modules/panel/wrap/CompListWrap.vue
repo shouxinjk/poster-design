@@ -70,19 +70,29 @@ export default defineComponent({
       types: [],
       showList: [],
     })
-    const pageOptions = { type: 1, page: 0, pageSize: 20 }
+    const pageOptions = { type: 1, pageNo: 0, pageSize: 20 }
 
     onMounted(async () => {
       if (state.types.length <= 0) {
-        const types = await api.material.getKinds({ type: 3 })
+        const res = await api.material.getKinds({ type: 3 })
+        console.log("got material categories", res);
+        let types = [{id: '0', name: "全部"}];
+        res.records.forEach( item => {
+          item.pid = null;
+          types.push(item);
+        })
         types.shift()
+        console.log("got types." ,types);
         state.types = types
         for (const iterator of types) {
-          const { list } = await api.home.getCompList({
-            cate: iterator.id,
+          console.log("try get compList", iterator);
+          const { records } = await api.home.getCompList({
+            category: iterator.id,
             type: 1,
             pageSize: 3,
           })
+          console.log("got compList records.", records);
+          let list = records || [];
           state.showList.push(list)
         }
       }
@@ -105,7 +115,7 @@ export default defineComponent({
     const load = async (init: boolean = false) => {
       if (init) {
         state.list = []
-        pageOptions.page = 0
+        pageOptions.pageNo = 0
         state.loadDone = false
       }
 
@@ -114,16 +124,16 @@ export default defineComponent({
       }
 
       state.loading = true
-      pageOptions.page += 1
+      pageOptions.pageNo += 1
 
       const res = await api.home.getCompList({
-        ...Object.assign(pageOptions, { cate: state.currentCategory?.id }),
+        ...Object.assign(pageOptions, { category: state.currentCategory?.id }),
       })
       if (init) {
-        state.list = res?.list
+        state.list = res?.records
       } else {
-        res?.list.length <= 0 && (state.loadDone = true)
-        state.list = state.list.concat(res?.list)
+        res?.records.length <= 0 && (state.loadDone = true)
+        state.list = state.list.concat(res?.records)
       }
       setTimeout(() => {
         state.loading = false
@@ -168,6 +178,7 @@ export default defineComponent({
       }
       this.$store.commit('setShowMoveable', false) // 清理掉上一次的选择
       tempDetail = tempDetail || (await api.home.getTempDetail({ id: item.id, type: 1 }))
+      console.log("got template/component detail.", tempDetail);
       // let group = JSON.parse(tempDetail.data)
       const group: any = await getComponentsData(tempDetail.data)
       let parent: any = { x: 0, y: 0 }

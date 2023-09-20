@@ -74,7 +74,7 @@ export default defineComponent({
         first_id: 2,
         second_id: state.type,
       })
-      state.list = res.list.map(({ thumbUrl, imgUrl }: any) => {
+      state.list = res.records.map(({ thumbUrl, imgUrl }: any) => {
         return { thumbUrl, imgUrl }
       })
     }

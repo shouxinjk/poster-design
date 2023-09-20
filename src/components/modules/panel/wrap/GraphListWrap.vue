@@ -71,19 +71,21 @@ export default defineComponent({
       showList: [],
       searchKeyword: '',
     })
-    const pageOptions = { page: 0, pageSize: 20 }
+    const pageOptions = { pageNo: 0, pageSize: 20 }
 
     onMounted(async () => {
       if (state.types.length <= 0) {
-        const types = await api.material.getKinds({ type: 2 })
+        const res = await api.material.getKinds({ type: 2 })
+        console.log("got font categories", res);
+        let types = res.records || [];
         types.shift()
         state.types = types
         for (const iterator of types) {
-          const { list } = await api.material.getList({
-            cate: iterator.id,
+          const { records } = await api.material.getList({
+            category: iterator.id,
             pageSize: 3,
           })
-          state.showList.push(list)
+          state.showList.push(records)
         }
       }
     })
@@ -107,23 +109,24 @@ export default defineComponent({
     const load = async (init: boolean = false) => {
       if (init) {
         state.list = []
-        pageOptions.page = 0
+        pageOptions.pageNo = 0
         state.loadDone = false
       }
       if (state.loadDone || state.loading) {
         return
       }
       state.loading = true
-      pageOptions.page += 1
+      pageOptions.pageNo += 1
       const list = await api.material.getList({
-        ...{ cate: state.currentCategory?.id, search: state.searchKeyword, ...pageOptions },
+        ...{ category: state.currentCategory?.id, search: state.searchKeyword, ...pageOptions },
       })
+      console.log("got material list.", list);
       if (init) {
-        state.list = list?.list
+        state.list = list?.records
       } else {
-        state.list = state.list.concat(list?.list)
+        state.list = state.list.concat(list?.records)
       }
-      list?.list.length <= 0 && (state.loadDone = true)
+      list?.records.length <= 0 && (state.loadDone = true)
       setTimeout(() => {
         state.loading = false
       }, 100)

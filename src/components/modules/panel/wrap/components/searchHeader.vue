@@ -41,15 +41,18 @@ export default defineComponent({
     const state: any = reactive({
       searchValue: '',
       materialCates: [],
-      currentIndex: 1,
+      currentIndex: '1',
     })
 
     if (props.type != 'none') {
-      api.home.getCategories({ type: 1 }).then((list: any) => {
+      api.home.getCategories({ type: 1 }).then((res: any) => {
+        console.log("got categories.", res);
+        let list = res.records;
         state.materialCates = list
         const { cate } = route.query
         cate && (state.currentIndex = cate)
-        cate && action('change', state.materialCates[Number(cate)], Number(cate))
+        // cate && action('change', state.materialCates[Number(cate)], Number(cate))
+        cate && action('change', state.materialCates[cate], cate)
       })
     }
 
