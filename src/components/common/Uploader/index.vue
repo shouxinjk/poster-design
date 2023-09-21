@@ -27,7 +27,8 @@ export default defineComponent({
     modelValue: {},
     options: {
       default: () => {
-        return { bucket: 'xp-design', prePath: 'user' }
+        // return { bucket: 'xp-design', prePath: 'user' }
+        return { bucket: 'poster-imgs', prePath: 'user' }
       },
     },
     hold: {

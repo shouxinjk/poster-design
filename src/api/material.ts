@@ -15,14 +15,14 @@ export const getList = (params: Type.Object = {}) => fetch('erp/designMaterial/l
 
 // 获取字体
 export const getFonts = (params: Type.Object = {}) => fetch('erp/designFonts/list', params)
-export const getFontSub = (params: Type.Object = {}) => fetch('design/font_sub', params)
+export const getFontSub = (params: Type.Object = {}) => fetch('design/font_sub', params) //ilife: pending replace
 
 // 图库列表
 export const getImagesList = (params: Type.Object = {}) => fetch('erp/designImage/list', params, 'get')
 
 // 我的上传列表
-export const getMyPhoto = (params: Type.Object = {}) => fetch('design/user/image', params)
-export const deleteMyPhoto = (params: Type.Object = {}) => fetch('design/user/image/del', params, 'post')
+export const getMyPhoto = (params: Type.Object = {}) => fetch('design/user/image', params) //ilife: pending replace
+export const deleteMyPhoto = (params: Type.Object = {}) => fetch('design/user/image/del', params, 'post') //ilife: pending replace
 
 // 添加图片
-export const addMyPhoto = (params: Type.Object = {}) => fetch('design/user/add_image', params)
+export const addMyPhoto = (params: Type.Object = {}) => fetch('design/user/add_image', params) //ilife: pending replace

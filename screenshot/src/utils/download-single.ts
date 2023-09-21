@@ -16,6 +16,7 @@ const maxPXs = 4211840 // 超出此规格会触发限制器降低dpr，节省服
 const maximum = 5000 // 最大宽高限制，超过截断以防止服务崩溃
 
 const saveScreenshot = async (url: string, { path, width, height, thumbPath, size = 0, quality = 0, prevent, ua, devices, scale, wait }: any) => {
+  console.log("try save screenshot...", url, path);
   return new Promise(async (resolve: Function) => {
     let isPageLoad = false
     // 启动浏览器

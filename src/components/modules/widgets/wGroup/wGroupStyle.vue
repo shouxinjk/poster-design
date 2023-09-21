@@ -16,6 +16,15 @@
           <number-input v-model="innerElement.height" style="margin-top: 0.5rem" label="高" @finish="(value) => finish('height', value)" />
         </div>
       </el-collapse-item>
+
+      <!--ilife-->
+      <el-collapse-item title="参数设置" name="1">
+        <div class="line-layout">
+          <text-input v-model="innerElement.paramName" label="名称" @finish="(value) => finish('paramName', value)" />
+          <text-input-area style="margin-top: 10px;" v-model="innerElement.paramDesc" label="备注" @finish="(value) => finish('paramDesc', value)" />
+        </div>
+      </el-collapse-item>
+
       <el-collapse-item title="样式设置" name="2">
         <el-button plain type="primary" class="block-btn" @click="ungroup(innerElement.uuid)">取消组合</el-button>
         <!-- <div class="ungroup style-item" @click="ungroup(innerElement.uuid)">取消组合</div> -->
@@ -33,6 +42,8 @@
 const NAME = 'w-group-style'
 import { mapGetters, mapActions } from 'vuex'
 import numberInput from '../../settings/numberInput.vue'
+import textInputArea from '../../settings/textInputArea.vue'
+import textInput from '../../settings/textInput.vue'
 import iconItemSelect from '../../settings/iconItemSelect.vue'
 import numberSlider from '../../settings/numberSlider.vue'
 import layerIconList from '@/assets/data/LayerIconList'
@@ -40,7 +51,7 @@ import alignIconList from '@/assets/data/AlignListData'
 
 export default {
   name: NAME,
-  components: { numberInput, iconItemSelect, numberSlider },
+  components: { numberInput, textInputArea, textInput, iconItemSelect, numberSlider },
   data() {
     return {
       activeNames: ['1', '2', '3', '4'],

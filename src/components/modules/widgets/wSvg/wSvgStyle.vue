@@ -16,6 +16,15 @@
           <number-input v-model="innerElement.height" style="margin-top: 0.5rem" label="高" @finish="(value) => finish('height', value)" />
         </div>
       </el-collapse-item>
+
+      <!--ilife-->
+      <el-collapse-item title="参数设置" name="1">
+        <div class="line-layout">
+          <text-input v-model="innerElement.paramName" label="名称" @finish="(value) => finish('paramName', value)" />
+          <text-input-area style="margin-top: 10px;" v-model="innerElement.paramDesc" label="备注" @finish="(value) => finish('paramDesc', value)" />
+        </div>
+      </el-collapse-item>
+
       <el-collapse-item title="设置颜色" name="2">
         <div v-for="(c, ci) in innerElement.colors" :key="ci + 'c'">
           <color-select v-model="innerElement.colors[ci]" @finish="(value) => colorFinish('colors')" />
@@ -41,12 +50,14 @@ import numberInput from '../../settings/numberInput.vue'
 import iconItemSelect from '../../settings/iconItemSelect.vue'
 import numberSlider from '../../settings/numberSlider.vue'
 import colorSelect from '../../settings/colorSelect.vue'
+import textInputArea from '../../settings/textInputArea.vue'
+import textInput from '../../settings/textInput.vue'
 import layerIconList from '@/assets/data/LayerIconList'
 import alignIconList from '@/assets/data/AlignListData'
 
 export default {
   name: NAME,
-  components: { numberInput, numberSlider, iconItemSelect, colorSelect },
+  components: { numberInput, numberSlider, iconItemSelect, colorSelect, textInputArea, textInput },
   data() {
     return {
       activeNames: ['2', '3', '4'],

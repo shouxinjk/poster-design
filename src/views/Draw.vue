@@ -44,9 +44,11 @@ export default defineComponent({
     async load() {
       let loadFlag = false
       const { id, tempid } = this.$route.query
+      console.log("try load data.", id, tempid );
       if (id || tempid) {
         const { data } = await api.home[id ? 'getWorks' : 'getTempDetail']({ id: id || tempid })
         const content = JSON.parse(data)
+        console.log("got data", content);
 
         this.$store.commit('setDPage', content.page)
         id ? this.$store.commit('setDWidgets', content.widgets) : this.setTemplate(content.widgets)
@@ -78,6 +80,7 @@ export default defineComponent({
               const cNodes: any = (window as any).document.getElementById(item.uuid).childNodes
               for (const el of cNodes) {
                 if (el.className && el.className.includes('img__box')) {
+                  console.log("ilife: try add image element.", el.firstChild);
                   imgsData.push(el.firstChild)
                 }
               }

@@ -36,6 +36,7 @@ import SaveImage from '@/components/business/save-download/CreateCover.vue'
 import { useFontStore } from '@/common/methods/fonts'
 import copyRight from './CopyRight.vue'
 import _config from '@/config'
+import {v4 as uuidv4} from 'uuid';
 
 export default defineComponent({
   components: { copyRight, SaveImage },
@@ -63,22 +64,43 @@ export default defineComponent({
       const { id, tempid } = route.query
       const cover = hasCover ? await proxy?.draw() : undefined
       const widgets = proxy.dWidgets // reviseData()
-      const { id: newId, stat, msg } = await api.home.saveWorks({ cover, id, title: proxy.title || '未命名设计', data: JSON.stringify({ page: proxy.dPage, widgets }), temp_id: tempid, width: proxy.dPage.width, height: proxy.dPage.height })
-      stat !== 0 ? useNotification('保存成功', '可在"我的作品"中查看') : useNotification('保存失败', msg, { type: 'error' })
+      let newId = uuidv4().replace(/\-/g, ""); //ilife：需要前端生成ID传递到后端
+      // const { id: newId, stat, msg } = await api.home.saveWorks({ 
+      let res = await api.home.saveWorks({ 
+        cover, 
+        id: newId, //id, 
+        title: proxy.title || '未命名设计', 
+        data: JSON.stringify({ page: proxy.dPage, widgets }), 
+        tempId: tempid, 
+        width: proxy.dPage.width, 
+        height: proxy.dPage.height })
+      console.log("save works done", res, id, tempid)
+      // res.success ? useNotification('保存成功', '可在"我的作品"中查看') : useNotification('保存失败', res.message, { type: 'error' })
+      useNotification('保存成功', res);
       !id && router.push({ path: '/home', query: { id: newId }, replace: true })
+      // !id && router.push({ path: '/home', query: { id: id }, replace: true })
       store.commit('setShowMoveable', true)
     }
     // 保存模板
     async function saveTemp() {
       const { tempid } = route.query
-      const { stat } = await api.home.saveTemp({ id: tempid, title: proxy.title || '未命名模板', content: JSON.stringify({ page: proxy.dPage, widgets: proxy.dWidgets }), width: proxy.dPage.width, height: proxy.dPage.height })
-      stat != 0 && useNotification('保存成功', '模板内容已变更')
+      let res = await api.home.saveTemp({ 
+        id: tempid, 
+        title: proxy.title || '未命名模板', 
+        data: JSON.stringify({ 
+          page: proxy.dPage, 
+          widgets: proxy.dWidgets 
+        }), 
+        width: proxy.dPage.width, 
+        height: proxy.dPage.height 
+      })
+      useNotification('保存成功', res);
     }
     // 停用启用
     async function stateChange(e: any) {
       const { tempid } = route.query
-      const { stat } = await api.home.saveTemp({ id: tempid, state: e ? 1 : 0 })
-      stat != 0 && useNotification('保存成功', '模板内容已变更')
+      let res = await api.home.saveTemp({ id: tempid, state: e ? 1 : 0 })
+      useNotification('保存成功', res)
     }
     async function download() {
       if (state.loading === true) {
@@ -87,7 +109,10 @@ export default defineComponent({
       state.loading = true
       context.emit('update:modelValue', true)
       context.emit('change', { downloadPercent: 1, downloadText: '正在处理封面' })
+      console.log("try save ...");
+      //ilife: 在外部调用时，需要提前融合动态表单数据
       await save(true)
+      console.log("save done");
       setTimeout(async () => {
         const { id } = route.query
         if (id) {
@@ -104,6 +129,7 @@ export default defineComponent({
               clearInterval(animation)
             }
           }, 800)
+          console.log("try _dl.downloadImg");
           await _dl.downloadImg(api.home.download({ id, width, height }) + '&r=' + Math.random(), (progress: number, xhr: any) => {
             if (props.modelValue) {
               clearInterval(animation)
@@ -142,9 +168,11 @@ export default defineComponent({
         cb()
         return
       }
-      const { data: content, title, state } = await api.home[apiName]({ id: id || tempId })
-      if (content) {
-        const data = JSON.parse(content)
+      let { data, title, state } = await api.home[apiName]({ id: id || tempId })
+      console.log("got template/works data.", data);
+      if (data) {
+        data = JSON.parse(data)
+        console.log("got parsed data.", data);
         this.stateBollean = !!state
         this.title = title
         this.$store.commit('setShowMoveable', false) // 清理掉上一次的选择框

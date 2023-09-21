@@ -41,6 +41,7 @@ module.exports = {
     }
   },
   async screenshots(req: any, res: any) {
+    console.log("try screenshot.",req.query);
     /**
      * @api {get} api/screenshots 截图
      * @apiVersion 1.0.0

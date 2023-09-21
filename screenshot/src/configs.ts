@@ -12,13 +12,13 @@ exports.servicePort = 7001
 /**
  * 配置服务器端的chrome浏览器位置
  */
-exports.executablePath = '/opt/google/chrome-unstable/chrome',
-
+// exports.executablePath = '/opt/google/chrome-unstable/chrome',
+exports.executablePath = '/opt/google/chrome/chrome',
 /**
  * 前端绘制页地址
  */
-exports.drawLink = isDev ? 'http://localhost:3000/draw' : 'https://design.palxp.cn/draw'
-
+// exports.drawLink = isDev ? 'http://localhost:3000/draw' : 'https://design.palxp.cn/draw'
+exports.drawLink = isDev ? 'http://localhost:3000/draw' : 'https://poster.biglistoflittlethings.com/draw'
 /**
  * 截图并发数上限
  */

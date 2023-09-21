@@ -23,6 +23,7 @@ export default defineComponent({
     const { proxy }: any = getCurrentInstance() as ComponentInternalInstance
 
     async function createCover(cb: any) {
+      console.log("createCover");
       const nowZoom = proxy?.dZoom
       // 取消选中元素
       proxy?.selectWidget({
@@ -38,9 +39,13 @@ export default defineComponent({
         clonePage.setAttribute('id', 'clone-page')
         document.body.appendChild(clonePage)
         html2canvas(document.getElementById('clone-page'), opts).then((canvas: any) => {
+          console.log("html2canvas done.", canvas);
           canvas.toBlob(
             async (blobObj: Blob) => {
-              const result: any = await Qiniu.upload(blobObj, { bucket: 'xp-design', prePath: 'cover/user' })
+              const result: any = await Qiniu.upload(blobObj, 
+              // { bucket: 'xp-design', prePath: 'cover/user' }
+              { bucket: 'poster-imgs', prePath: 'cover/user' }
+              )
               cb(result)
             },
             'image/jpeg',

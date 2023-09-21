@@ -11,7 +11,7 @@ const prefix = _config.API_URL + '/'
 const API = {
   init: prefix + 'pic/init',
   getList: prefix + 'pic/list',
-  getToken: prefix + 'pic/getToken',
+  getToken: prefix + 'qiniu/upload-token', // 'pic/getToken',
   delOne: prefix + 'pic/delOne',
   rename: prefix + 'pic/rename',
   del: prefix + 'pic/del',
