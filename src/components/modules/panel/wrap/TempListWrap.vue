@@ -113,7 +113,7 @@ export default defineComponent({
           return false
         }
       }
-      this.$store.commit('managerEdit', false)
+      // this.$store.commit('managerEdit', false) //ilife：根据url参数edit设置
       this.$store.commit('setDWidgets', [])
 
       this.setTempId(item.id)

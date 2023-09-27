@@ -25,7 +25,7 @@ const saveScreenshot = async (url: string, { path, width, height, thumbPath, siz
       executablePath: isDev ? null : executablePath,
       ignoreHTTPSErrors: true, // 忽略https安全提示
       // args: ['–no-first-run', '–single-process', '–disable-gpu', '–no-zygote', '–disable-dev-shm-usage', '--no-sandbox', '--disable-setuid-sandbox', `--window-size=${width},${height}`], // 优化配置
-      args: [`--window-size=${width},${height}`], // 优化配置
+      args: ['--no-sandbox', `--window-size=${width},${height}`], // 优化配置
       defaultViewport: null,
     })
     const regulators = setTimeout(() => {

@@ -103,6 +103,7 @@ export default defineComponent({
       useNotification('保存成功', res)
     }
     async function download() {
+      console.log("start download image");
       if (state.loading === true) {
         return
       }

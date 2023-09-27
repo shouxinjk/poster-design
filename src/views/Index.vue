@@ -90,7 +90,7 @@ export default defineComponent({
     function jump2home() {
       // const fullPath = window.location.href.split('/')
       // window.open(fullPath[0] + '//' + fullPath[2])
-      window.open('https://xp.palxp.cn/')
+      window.open('https://www.biglistoflittlethings.com')
     }
     return {
       ...toRefs(state),

@@ -17,8 +17,8 @@ exports.executablePath = '/opt/google/chrome/chrome',
 /**
  * 前端绘制页地址
  */
-// exports.drawLink = isDev ? 'http://localhost:3000/draw' : 'https://design.palxp.cn/draw'
-exports.drawLink = isDev ? 'http://localhost:3000/draw' : 'https://poster.biglistoflittlethings.com/draw'
+// exports.drawLink = isDev ? 'http://localhost:3000/draw' : 'https://poster.biglistoflittlethings.com/draw'
+exports.drawLink = 'https://poster.biglistoflittlethings.com/draw'
 /**
  * 截图并发数上限
  */
@@ -37,5 +37,5 @@ exports.releaseTime = 300
 /**
  * 图片缓存目录位置，根据实际情况调整
  */
-exports.filePath = isDev ? process.cwd() + `/static/` : '/cache/'
-// exports.filePath = process.cwd() + `/static/`
+// exports.filePath = isDev ? process.cwd() + `/static/` : process.cwd() + '/cache/'
+exports.filePath = process.cwd() + `/cache/`

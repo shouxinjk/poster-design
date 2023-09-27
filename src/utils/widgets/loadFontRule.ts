@@ -8,7 +8,7 @@
 import api from '@/api'
 import { blob2Base64, generateFontStyle } from '@/common/methods/fonts/utils'
 
-export const fontWithDraw = true // true开启，false关闭
+export const fontWithDraw = false // true开启，false关闭
 
 export const font2style = async (fontContent: any, fontData: any = []) => {
   return new Promise((resolve: Function) => {

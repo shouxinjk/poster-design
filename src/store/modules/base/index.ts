@@ -19,7 +19,7 @@ const all = {
     }, // 储存用户信息
     scroll: true,
     manager: '', // 是否为管理员模式
-    tempEditing: false, // 管理员是否正在编辑模板
+    tempEditing: false, // 管理员是否正在编辑模板： ilife：当前默认海报设计器均为管理员采用
     fonts: [], // 缓存字体列表
     app: null, // 抠图服务
   },
