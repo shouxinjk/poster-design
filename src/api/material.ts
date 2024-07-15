@@ -14,7 +14,7 @@ export const getKinds = (params: Type.Object = {}) => fetch('erp/designCategory/
 export const getList = (params: Type.Object = {}) => fetch('erp/designMaterial/list', params)
 
 // 获取字体
-export const getFonts = (params: Type.Object = {}) => fetch('erp/designFonts/list', params)
+export const getFonts = (params: Type.Object = {}) => fetch('erp/designFont/list', params)
 export const getFontSub = (params: Type.Object = {}) => fetch('design/font_sub', params) //ilife: pending replace
 
 // 图库列表
