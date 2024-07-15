@@ -2,7 +2,7 @@
 
 ---
 
-## 迅排设计
+## 海报设计
 
 一款漂亮且功能强大的在线海报图片设计器，仿稿定设计。
 
@@ -29,14 +29,6 @@
 - 图层操作，支持拖拽变更层级。
 - 颜色调色板，原生级取色器颜色吸管（Chrome）。
 
-### 拉取源码
-
-> 环境需求：**Node.js v16.18** 以上版本
-
-```
-git clone https://github.com/palxiao/poster-design.git
-cd poster-design
-```
 
 ### 安装依赖
 
