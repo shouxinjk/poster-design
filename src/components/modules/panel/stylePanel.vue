@@ -21,7 +21,7 @@
 // 样式设置面板
 const NAME = 'style-panel'
 import { mapGetters, mapActions } from 'vuex'
-import alignIconList from '@/assets/data/AlignListData'
+import alignIconList from '@/assets/data/alignListData'
 import iconItemSelect from '../settings/iconItemSelect.vue'
 
 export default {
