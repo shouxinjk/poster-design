@@ -53,7 +53,7 @@ import colorSelect from '../../settings/colorSelect.vue'
 import textInputArea from '../../settings/textInputArea.vue'
 import textInput from '../../settings/textInput.vue'
 import layerIconList from '@/assets/data/LayerIconList'
-import alignIconList from '@/assets/data/alignListData'
+import alignIconList from '@/assets/data/AlignListData'
 
 export default {
   name: NAME,

@@ -80,7 +80,7 @@ import textInputArea from '../../settings/textInputArea.vue'
 import { getImage } from '@/common/methods/getImgDetail'
 import api from '@/api'
 import layerIconList from '@/assets/data/LayerIconList'
-import alignIconList from '@/assets/data/alignListData'
+import alignIconList from '@/assets/data/AlignListData'
 import picBox from '@/components/business/picture-selector'
 import imageCutout from '@/components/business/image-cutout'
 

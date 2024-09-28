@@ -79,7 +79,7 @@ import api from '@/api'
 import localization from '@/assets/data/QrCodeLocalization'
 import uploader from '@/components/common/Uploader/index.vue'
 import layerIconList from '@/assets/data/LayerIconList'
-import alignIconList from '@/assets/data/alignListData'
+import alignIconList from '@/assets/data/AlignListData'
 
 export default {
   name: NAME,
