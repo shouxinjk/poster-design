@@ -13,7 +13,7 @@ _this.dHistoryParams = store.getters.dHistoryParams
 // _this.handleHistory = store.dispatch.ha
 
 import keyCodeOptions from './methods/keyCodeOptions'
-import dealWithCtrl from './methods/dealWithCtrl'
+import dealWithCtrl from './methods/DealWithCtrl'
 
 const ignoreNode = ['INPUT', 'TEXTAREA']
 
