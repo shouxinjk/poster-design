@@ -18,7 +18,9 @@ exports.executablePath = '/opt/google/chrome/chrome',
  * 前端绘制页地址
  */
 // exports.drawLink = isDev ? 'http://localhost:3000/draw' : 'https://poster.biglistoflittlethings.com/draw'
-exports.drawLink = 'https://poster.biglistoflittlethings.com/draw'
+// exports.drawLink = 'https://poster.biglistoflittlethings.com/draw'
+exports.drawLink = 'https://air.biglistoflittlethings.com/poster-designer/draw'
+
 /**
  * 截图并发数上限
  */

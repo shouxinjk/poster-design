@@ -12,7 +12,8 @@ const isDev = prefix.NODE_ENV === 'development'
 
 export default {
   isDev,
-  BASE_URL: isDev ? '/' : './',
+  // BASE_URL: isDev ? '/' : './', 
+  BASE_URL: isDev ? '/poster-designer' : '/poster-designer', //注意：支持通过子路径访问避免跨域，需要与nginx保持严格一致
   VERSION: '1.1.0',
   APP_NAME: 'More+定制',
   COPYRIGHT: 'biglistoflittlething.com',

@@ -20,7 +20,7 @@ import toolTip from '@/components/common/PopoverTip.vue'
 export default defineComponent({
   components: { toolTip },
   setup() {
-    const content = '本站为个人项目，所使用素材图片等均为网络收集而来，下载之作品仅供学习研究或欣赏目的而使用，无法提供商用授权哦。'
+    const content = '本系统仅对设计提供支持，请谨慎上传素材，并确保无版权问题。'
     return {
       content,
     }

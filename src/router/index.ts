@@ -8,7 +8,7 @@
 import { createRouter, createWebHistory, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import config from '@/config'
 import hook from './hook'
-import base from './base'
+import base from './Base'
 
 const routes: Array<RouteRecordRaw> = [...base]
 

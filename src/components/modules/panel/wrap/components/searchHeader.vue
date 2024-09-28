@@ -45,7 +45,7 @@ export default defineComponent({
     })
 
     if (props.type != 'none') {
-      api.home.getCategories({ type: 1 }).then((res: any) => {
+      api.home.getCategories({ type: 1, pageSize: 50 }).then((res: any) => {
         console.log("got categories.", res);
         let list = res.records;
         state.materialCates = list

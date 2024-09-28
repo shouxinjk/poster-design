@@ -15,7 +15,8 @@ const resolve = (...data: string[]) => path.resolve(__dirname, ...data)
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // base: '/web',
+  // base: '/web', //注意：ngxin配置为根目录时，不需要设置。仅用于指定路径访问
+  base: '/poster-designer', //ilife: 配置作为子路径，和nginx内代理配置保持严格一致。将修改assets资源引用路径
   plugins: [
     vue(),
     viteCompression({

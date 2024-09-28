@@ -29,7 +29,7 @@ export default [
     path: '/home',
     name: 'Home',
     component: () => import(/* webpackChunkName: 'base' */ '@/views/Index.vue'),
-  },
+  }, 
   {
     path: '/draw',
     name: 'Draw',
